@@ -1,0 +1,35 @@
+{
+  "categoryCreate": {
+    "name": "Technology"
+  },
+  "categoryUpdate": {
+    "name": "Technology & IT"
+  },
+  "businessCreate": {
+    "name": "City Tech Solutions",
+    "phone": "+1-555-9999",
+    "email": "info@citytech.com",
+    "address": "99 Innovation Drive, Suite 200",
+    "description": "IT consulting and support.",
+    "categoryId": 1
+  },
+  "businessUpdate": {
+    "name": "City Tech Solutions (Updated)",
+    "phone": "+1-555-9998",
+    "email": "contact@citytech.com",
+    "address": "99 Innovation Drive, Suite 300",
+    "description": "Updated description.",
+    "categoryId": 1
+  },
+  "login": {
+    "username": "admin",
+    "password": "Admin@123"
+  },
+  "categoryIds": {
+    "1": "Restaurants",
+    "2": "Hotels",
+    "3": "Healthcare",
+    "4": "Retail",
+    "5": "Services"
+  }
+}

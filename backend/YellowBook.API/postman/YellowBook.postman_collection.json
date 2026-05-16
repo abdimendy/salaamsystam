@@ -1,0 +1,99 @@
+{
+  "info": {
+    "name": "Yellow Book API",
+    "description": "Test collection for Yellow Book Telephone Directory API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5261"
+    }
+  ],
+  "item": [
+    {
+      "name": "Dashboard stats",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/dashboard/stats"
+      }
+    },
+    {
+      "name": "Get all categories",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/categories"
+      }
+    },
+    {
+      "name": "Create category",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Technology\"\n}"
+        },
+        "url": "{{baseUrl}}/api/categories"
+      }
+    },
+    {
+      "name": "Get all businesses",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/businesses"
+      }
+    },
+    {
+      "name": "Get business by id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/businesses/1"
+      }
+    },
+    {
+      "name": "Search businesses by name",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/businesses/search?name=Hotel"
+      }
+    },
+    {
+      "name": "Create business",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Test Cafe\",\n  \"phone\": \"+252-61-1234567\",\n  \"email\": \"test@cafe.example\",\n  \"address\": \"Mogadishu, Somalia\",\n  \"description\": \"API test listing\",\n  \"categoryId\": 1\n}"
+        },
+        "url": "{{baseUrl}}/api/businesses"
+      }
+    },
+    {
+      "name": "Update business",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Grand Plaza Hotel (Updated)\",\n  \"phone\": \"+1-555-0101\",\n  \"email\": \"info@grandplaza.com\",\n  \"address\": \"100 Main Street, Downtown\",\n  \"description\": \"Updated via Postman\",\n  \"categoryId\": 2\n}"
+        },
+        "url": "{{baseUrl}}/api/businesses/1"
+      }
+    },
+    {
+      "name": "Delete business",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "{{baseUrl}}/api/businesses/99"
+      }
+    }
+  ]
+}

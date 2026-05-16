@@ -1,0 +1,110 @@
+{
+  "info": {
+    "name": "Yellow Book Telephone Directory API",
+    "description": "Postman collection for Yellow Book CRUD APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5261/api" }
+  ],
+  "item": [
+    {
+      "name": "Businesses",
+      "item": [
+        {
+          "name": "GET All Businesses",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/businesses"
+          }
+        },
+        {
+          "name": "GET Business By Id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/businesses/1"
+          }
+        },
+        {
+          "name": "GET Search Businesses",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/businesses/search?name=hotel",
+              "host": ["{{baseUrl}}"],
+              "path": ["businesses", "search"],
+              "query": [{ "key": "name", "value": "hotel" }]
+            }
+          }
+        },
+        {
+          "name": "POST Create Business",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"City Hotel\",\n  \"phone\": \"+1-555-9999\",\n  \"email\": \"stay@cityhotel.com\",\n  \"address\": \"88 Park Avenue\",\n  \"description\": \"Budget friendly hotel\",\n  \"categoryId\": 2\n}"
+            },
+            "url": "{{baseUrl}}/businesses"
+          }
+        },
+        {
+          "name": "PUT Update Business",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"City Hotel Updated\",\n  \"phone\": \"+1-555-9999\",\n  \"email\": \"info@cityhotel.com\",\n  \"address\": \"88 Park Avenue, Suite 10\",\n  \"description\": \"Renovated rooms\",\n  \"categoryId\": 2\n}"
+            },
+            "url": "{{baseUrl}}/businesses/1"
+          }
+        },
+        {
+          "name": "DELETE Business",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/businesses/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "GET All Categories",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/categories"
+          }
+        },
+        {
+          "name": "POST Create Category",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Technology\"\n}"
+            },
+            "url": "{{baseUrl}}/categories"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "item": [
+        {
+          "name": "GET Dashboard Stats",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/dashboard/stats"
+          }
+        }
+      ]
+    }
+  ]
+}

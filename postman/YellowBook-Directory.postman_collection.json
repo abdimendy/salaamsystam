@@ -1,0 +1,129 @@
+{
+  "info": {
+    "name": "YellowBook Directory API",
+    "description": "Full API for Yellow Book Telephone Directory — PostgreSQL + JWT",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5261/api" },
+    { "key": "token", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "  var json = pm.response.json();",
+                  "  pm.collectionVariables.set('token', json.token);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"Admin@123\"\n}"
+            },
+            "url": "{{baseUrl}}/auth/login"
+          }
+        },
+        { "name": "Me", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/auth/me" } }
+      ]
+    },
+    {
+      "name": "Businesses",
+      "item": [
+        { "name": "Get All", "request": { "method": "GET", "url": "{{baseUrl}}/businesses" } },
+        { "name": "Get Featured", "request": { "method": "GET", "url": "{{baseUrl}}/businesses/featured?count=6" } },
+        { "name": "Search", "request": { "method": "GET", "url": "{{baseUrl}}/businesses/search?name=bank&city=Mogadishu" } },
+        { "name": "Get By Id", "request": { "method": "GET", "url": "{{baseUrl}}/businesses/1" } },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"New Business\",\n  \"phone\": \"+252611111111\",\n  \"email\": \"info@new.so\",\n  \"address\": \"Mogadishu\",\n  \"categoryId\": 1,\n  \"city\": \"Mogadishu\",\n  \"rating\": 4.5,\n  \"logoUrl\": \"\"\n}"
+            },
+            "url": "{{baseUrl}}/businesses"
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Updated Name\",\n  \"phone\": \"+252611111111\",\n  \"email\": \"info@new.so\",\n  \"address\": \"Mogadishu\",\n  \"categoryId\": 1,\n  \"city\": \"Mogadishu\",\n  \"rating\": 4.8\n}" },
+            "url": "{{baseUrl}}/businesses/1"
+          }
+        },
+        { "name": "Delete", "request": { "method": "DELETE", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/businesses/1" } }
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        { "name": "Get All", "request": { "method": "GET", "url": "{{baseUrl}}/categories" } },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"New Category\",\n  \"description\": \"Description\",\n  \"icon\": \"bank\"\n}" },
+            "url": "{{baseUrl}}/categories"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Upload",
+      "item": [
+        {
+          "name": "Business Image",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "body": {
+              "mode": "formdata",
+              "formdata": [{ "key": "file", "type": "file", "src": "" }]
+            },
+            "url": "{{baseUrl}}/upload/business-image"
+          }
+        }
+      ]
+    },
+    {
+      "name": "PDF",
+      "item": [
+        { "name": "Business PDF", "request": { "method": "GET", "url": "{{baseUrl}}/pdf/business/1" } },
+        { "name": "Report PDF", "request": { "method": "GET", "url": "{{baseUrl}}/pdf/report" } }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "item": [
+        { "name": "Stats", "request": { "method": "GET", "url": "{{baseUrl}}/dashboard/stats" } }
+      ]
+    },
+  ]
+}

@@ -1,0 +1,86 @@
+@baseUrl = http://localhost:5261
+@token = 
+
+### Swagger UI (browser)
+# GET {{baseUrl}}/
+
+### --- Auth ---
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "Admin@123"
+}
+
+### --- Dashboard ---
+GET {{baseUrl}}/api/dashboard/stats
+Accept: application/json
+
+### --- Categories ---
+GET {{baseUrl}}/api/categories
+Accept: application/json
+
+###
+POST {{baseUrl}}/api/categories
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Technology"
+}
+
+###
+PUT {{baseUrl}}/api/categories/6
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Technology (Updated)"
+}
+
+###
+DELETE {{baseUrl}}/api/categories/6
+Authorization: Bearer {{token}}
+
+### --- Businesses ---
+GET {{baseUrl}}/api/businesses
+Accept: application/json
+
+###
+GET {{baseUrl}}/api/businesses/1
+Accept: application/json
+
+###
+GET {{baseUrl}}/api/businesses/search?name=Hotel
+Accept: application/json
+
+###
+POST {{baseUrl}}/api/businesses
+Content-Type: application/json
+
+{
+  "name": "Test Cafe",
+  "phone": "+252-61-1234567",
+  "email": "test@cafe.example",
+  "address": "Mogadishu, Somalia",
+  "description": "API test listing",
+  "categoryId": 1
+}
+
+###
+PUT {{baseUrl}}/api/businesses/1
+Content-Type: application/json
+
+{
+  "name": "Grand Plaza Hotel (Updated)",
+  "phone": "+1-555-0101",
+  "email": "info@grandplaza.com",
+  "address": "100 Main Street, Downtown",
+  "description": "Updated via API test",
+  "categoryId": 2
+}
+
+###
+DELETE {{baseUrl}}/api/businesses/99
+Accept: application/json

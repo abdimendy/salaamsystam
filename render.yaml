@@ -1,0 +1,35 @@
+# Deploy API on https://render.com (free tier)
+# 1. Push repo to GitHub
+# 2. Render → New → Blueprint → connect repo
+# 3. Add env: FRONTEND_URL = your Vercel URL (after frontend deploy)
+
+services:
+  - type: web
+    name: yellowbook-api
+    runtime: docker
+    dockerfilePath: ./backend/YellowBook.API/Dockerfile
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ConnectionStrings__DefaultConnection
+        fromDatabase:
+          name: yellowbook-db
+          property: connectionString
+      - key: FRONTEND_URL
+        sync: false
+      - key: Jwt__Key
+        generateValue: true
+      - key: Jwt__Issuer
+        value: YellowBookAPI
+      - key: Jwt__Audience
+        value: YellowBookClient
+      - key: AdminUser__Username
+        value: admin
+      - key: AdminUser__Password
+        sync: false
+
+databases:
+  - name: yellowbook-db
+    plan: free
+    databaseName: yellowbook
+    user: yellowbook

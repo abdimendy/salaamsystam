@@ -1,0 +1,64 @@
+# Yellow Book API — POST examples
+# VS Code/Cursor: install "REST Client" extension, then click "Send Request" above each block.
+# API must be running: dotnet run (http://localhost:5261)
+
+@baseUrl = http://localhost:5261
+
+### Health
+GET {{baseUrl}}/api/health
+
+### Login (optional — saves token for /auth/me)
+# @name login
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "Admin@123"
+}
+
+### ——— CATEGORY POST ———
+
+### Create category
+POST {{baseUrl}}/api/categories
+Content-Type: application/json
+
+{
+  "name": "Technology"
+}
+
+### Update category (beddel id: 6 haddii category cusub aad sameysay)
+PUT {{baseUrl}}/api/categories/1
+Content-Type: application/json
+
+{
+  "name": "Restaurants Updated"
+}
+
+### ——— BUSINESS POST ———
+
+### Create business (categoryId: 1=Restaurants, 2=Hotels, 3=Healthcare, 4=Retail, 5=Services)
+POST {{baseUrl}}/api/businesses
+Content-Type: application/json
+
+{
+  "name": "City Tech Solutions",
+  "phone": "+1-555-9999",
+  "email": "info@citytech.com",
+  "address": "99 Innovation Drive, Suite 200",
+  "description": "IT consulting and support.",
+  "categoryId": 1
+}
+
+### Update business (beddel id)
+PUT {{baseUrl}}/api/businesses/1
+Content-Type: application/json
+
+{
+  "name": "Grand Plaza Hotel (Updated)",
+  "phone": "+1-555-0101",
+  "email": "info@grandplaza.com",
+  "address": "100 Main Street, Downtown",
+  "description": "Luxury hotel — updated via POST/PUT test.",
+  "categoryId": 2
+}
