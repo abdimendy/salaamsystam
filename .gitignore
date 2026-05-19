@@ -1,0 +1,29 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+
+# Node
+node_modules/
+dist/
+
+# Environment
+.env
+.env.local
+.env.vercel
+
+# IDE
+.vs/
+.idea/
+*.swp
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Local databases
+*.db
+*.db-shm
+*.db-wal
+.vercel
