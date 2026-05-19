@@ -35,7 +35,8 @@ if ($LASTEXITCODE -ne 0) { throw 'Build failed.' }
 
 if (-not (Test-GitRemote)) {
     Write-Host ''
-    Write-Host 'GitHub repo not found — run first:' -ForegroundColor Red
+    Write-Host 'GitHub repo not found. Fix remote (must exist on GitHub):' -ForegroundColor Red
+    Write-Host '  git remote set-url origin https://github.com/abdimendy/fullsystem.git' -ForegroundColor Yellow
     Write-Host '  .\scripts\setup-github-and-push.ps1' -ForegroundColor Yellow
     exit 1
 }
